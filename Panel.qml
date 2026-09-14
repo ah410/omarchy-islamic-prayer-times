@@ -41,9 +41,10 @@ Panel {
     return false
   }
 
+  // Third-party plugins get PluginBarApi, where this is a method, not a settable property.
   function setCenterHoverRevealSuppressed(value) {
-    if (root.bar && "centerHoverRevealSuppressed" in root.bar)
-      root.bar.centerHoverRevealSuppressed = value
+    if (root.bar && typeof root.bar.setCenterHoverRevealSuppressed === "function")
+      root.bar.setCenterHoverRevealSuppressed(value)
   }
 
   readonly property var times: hostWidget ? hostWidget.times : null
